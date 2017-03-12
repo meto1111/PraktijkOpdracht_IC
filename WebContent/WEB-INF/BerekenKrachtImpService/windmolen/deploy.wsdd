@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BerekenKrachtImpService WSDL service -->
+
+  <service name="BerekenKrachtImp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://windmolen"/>
+      <parameter name="wsdlServiceElement" value="BerekenKrachtImpService"/>
+      <parameter name="schemaQualified" value="http://windmolen"/>
+      <parameter name="wsdlServicePort" value="BerekenKrachtImp"/>
+      <parameter name="className" value="windmolen.BerekenKrachtImp"/>
+      <parameter name="wsdlPortType" value="BerekenKrachtImp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://windmolen" xmlns:retNS="http://windmolen" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="windEngerie" qname="operNS:windEngerie" returnQName="retNS:windEngerieReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://windmolen" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:uur" type="tns:int"/>
+        <parameter xmlns:pns="http://windmolen" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:windsnelheid" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://windmolen" xmlns:retNS="http://windmolen" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="berekenKracht" qname="operNS:berekenKracht" returnQName="retNS:berekenKrachtReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://windmolen" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:windsnelheid" type="tns:int"/>
+        <parameter xmlns:pns="http://windmolen" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:vermogen" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="windEngerie berekenKracht"/>
+
+  </service>
+</deployment>
